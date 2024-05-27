@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { ThemeProvider } from './contexts/themeContext';
 
 
 function App() {
@@ -71,7 +72,8 @@ function App() {
     };
 
     return (
-        <div className={`${darkMode ? 'dark' : ''} flex flex-col items-center justify-center min-h-screen bg-gray-100 dark:bg-gray-900 p-4`}>
+        <ThemeProvider>
+        <div className={`${darkMode ? 'dark' : ''} flex flex-col items-center justify-center min-h-screen bg-gray-900 dark:bg-gray-100 p-4`}>
             <div className="w-full flex justify-end mb-4">
                 <button
                     onClick={toggleDarkMode}
@@ -80,7 +82,7 @@ function App() {
                     {darkMode ? 'Light Mode' : 'Dark Mode'}
                 </button>
             </div>
-            <h1 className="text-4xl font-bold mb-4 text-gray-900 dark:text-gray-100">Pokémon Search</h1>
+            <h1 className="text-4xl font-bold mb-4 text-red-500 dark:text-red-500">Pokémon Search</h1>
             <div className="flex flex-col items-center mb-4">
                 <input
                     type="text"
@@ -121,10 +123,10 @@ function App() {
                             <div key={pokemon.id} className="bg-white dark:bg-gray-800 p-4 rounded shadow-md flex flex-col items-center">
                                 <img src={pokemon.sprites.front_default} alt={pokemon.name} className="mb-4" />
                                 <h2 className="text-xl font-bold mb-2 capitalize text-gray-900 dark:text-gray-100">{pokemon.name}</h2>
-                                <p className="mb-1 text-gray-900 dark:text-gray-100">Base experience: {pokemon.base_experience}</p>
-                                <p className="mb-1 text-gray-900 dark:text-gray-100">Height: {pokemon.height}</p>
-                                <p className="mb-1 text-gray-900 dark:text-gray-100">Weight: {pokemon.weight}</p>
-                                <p className="mb-1 text-gray-900 dark:text-gray-100">Abilities: {pokemon.abilities.map((item) => item.ability.name).join(', ')}</p>
+                                <p className="mb-1 font-mono text-gray-900 dark:text-gray-100">Base experience: {pokemon.base_experience}</p>
+                                <p className="mb-1 font-mono text-gray-900 dark:text-gray-100">Height: {pokemon.height}</p>
+                                <p className="mb-1 font-mono text-gray-900 dark:text-gray-100">Weight: {pokemon.weight}</p>
+                                <p className="mb-1 font-mono text-gray-900 dark:text-gray-100">Abilities: {pokemon.abilities.map((item) => item.ability.name).join(', ')}</p>
                             </div>
                         ))}
                     </div>
@@ -146,6 +148,7 @@ function App() {
                 </>
             )}
         </div>
+        </ThemeProvider>
     );
 }
 
